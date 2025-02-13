@@ -128,20 +128,56 @@ Once you have your API key, you can use it in your requests to the Haroon AI API
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Haroon AI API Test</title>
+  <title>Haroon AI Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom Glass Effect */
+    .glass {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Gradient Background */
+    .gradient-bg {
+      background: linear-gradient(135deg, rgba(85, 58, 233, 1) 0%, rgba(0, 212, 255, 1) 100%);
+    }
+  </style>
 </head>
-<body>
+<body class="gradient-bg font-sans">
 
-  <h1>Haroon AI Test</h1>
+  <div class="flex justify-center items-center min-h-screen p-4">
+    <div class="glass w-full sm:w-96 max-w-md">
+      <h1 class="text-4xl font-extrabold text-center text-white mb-6">Haroon AI Test</h1>
 
-  <input type="text" id="userPrompt" placeholder="Ask me anything...">
-  <button id="submitBtn">Submit</button>
-  <pre id="response"></pre>
+      <div class="space-y-4">
+        <!-- User Input -->
+        <div>
+          <label for="userPrompt" class="text-lg font-medium text-white">Ask me anything...</label>
+          <input type="text" id="userPrompt" class="w-full mt-2 px-4 py-3 bg-transparent border-2 border-gray-200 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400" placeholder="Type your prompt here..." />
+        </div>
+
+        <!-- Submit Button -->
+        <button id="submitBtn" class="w-full py-3 bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold rounded-lg hover:bg-gradient-to-l transition duration-300 transform hover:scale-105 ease-in-out">Submit</button>
+      </div>
+
+      <!-- Response Output -->
+      <div class="mt-6">
+        <h2 class="text-xl font-medium text-white">AI Response:</h2>
+        <pre id="response" class="mt-2 bg-gray-800 bg-opacity-50 text-white p-4 rounded-lg text-sm h-48 overflow-auto border border-gray-300"></pre>
+      </div>
+    </div>
+  </div>
 
   <script>
     document.getElementById('submitBtn').addEventListener('click', async function () {
       const prompt = document.getElementById('userPrompt').value;
       const apiKey = 'YOUR_GOOGLE_GEMINI_API_KEY'; // Replace with your API key
+
+      // Clear previous response
+      document.getElementById('response').textContent = 'Loading...';
 
       const response = await fetch('https://haroon-ai-api-public.vercel.app/api/haroonai', {
         method: 'POST',
@@ -158,6 +194,7 @@ Once you have your API key, you can use it in your requests to the Haroon AI API
 
 </body>
 </html>
+
 ```
 This code provides a simple front-end example for submitting user prompts to the Haroon AI API and displaying the AI-generated response.
 
